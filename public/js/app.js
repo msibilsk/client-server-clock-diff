@@ -1,24 +1,24 @@
 document.body.onload = function() {
-  var clientTime;
+  var clientTime1;
 
+  //open web socket and send current time
   function socketExample() {
-    console.log('Creating socket');
-    var socket = new WebSocket('ws://localhost:3000/');
+    var socket = new WebSocket('ws://34.208.224.102:3000/');
     socket.onopen = function() {
-
-      clientTime = (new Date()).valueOf();
-      socket.send(clientTime);
-      console.log('client time sent.')
+      clientTime1 = new Date().valueOf();
+      socket.send(clientTime1);
     };
+
+    //when message is received from server figure out the estimate lag and clock difference
     socket.onmessage = function(message) {
-      var currentTime = (new Date()).valueOf();
+      var clientTime2 = new Date().valueOf();
       var serverTime = message.data;
-      var initialDiff = serverTime - clientTime;
-      var lag = (initialDiff + (currentTime - serverTime))/2;
-      var realClockDiff = lag - initialDiff;
-      document.getElementById('response').innerHTML = "Initial Client Time: " + clientTime + " Server Time: " + serverTime + " Return Client Time " + currentTime + " Estimated Lag: " + lag + " Real Clock Dff: " + realClockDiff;
+      var lag = (clientTime2 - clientTime1)/2;
+      var clockDiff = (clientTime2 - serverTime) - lag;
+      document.getElementById('response').innerHTML = "Initial Client Time: " + clientTime1 + "\nSecond Client Time: " + clientTime2 + "\nEstimated Lag: " + lag + "\nClock Dff: " + realClockDiff;
     };
   }
 
   socketExample();
 }
+

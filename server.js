@@ -4,19 +4,19 @@ var expressApp = require('./express-app');
 
 var port = process.env.PORT || 3000;
 
+//bind ws server to http server
 var wss = new WSServer({
   server: server
 });
 
+//use express routes
 server.on('request', expressApp);
 
+//when wss receives message from client respond with server clock time
 wss.on('connection', function connection(ws) {
 
   ws.on('message', function incoming(message) {
-  	var clientTime = message.data;
-	var serverTime = (new Date()).valueOf();
-    ws.send(serverTime);
-    console.log("server time sent")
+    ws.send(new Date().valueOf());
   });
 });
 
