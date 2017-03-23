@@ -14,8 +14,8 @@ document.body.onload = function() {
       var clientTime2 = new Date().valueOf();
       var serverTime = message.data;
       var lag = (clientTime2 - clientTime1)/2;
-      var clockDiff = (clientTime2 - serverTime) - lag;
-      document.getElementById('response').innerHTML = "Initial Client Time: " + clientTime1 + "\nSecond Client Time: " + clientTime2 + "\nEstimated Lag: " + lag + "\nClock Dff: " + realClockDiff;
+      var clockDiff = Math.abs((clientTime2 - serverTime) - lag);
+      document.getElementById('response').innerHTML = "Initial Client Time: " + clientTime1 + "\nServer Time: " + serverTime +"\nSecond Client Time: " + clientTime2 + "\nEstimated Lag: " + lag + "\nClock Dff: " + clockDiff;
     };
   }
 
