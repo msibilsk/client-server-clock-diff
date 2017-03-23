@@ -1,0 +1,27 @@
+{
+  "name": "client-server-clock-diff",
+  "version": "1.0.0",
+  "description": "Finds the difference in time between the clock on a server and the clock on the client machine",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msibilsk/client-server-clock-diff.git"
+  },
+  "author": "Mary Sibilsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msibilsk/client-server-clock-diff/issues"
+  },
+  "homepage": "https://github.com/msibilsk/client-server-clock-diff#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "http": "0.0.0",
+    "path": "^0.12.7",
+    "ws": "^2.2.2"
+  }
+}
